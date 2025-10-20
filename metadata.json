@@ -1,0 +1,5 @@
+{
+  "name": "Institutional Document Processor",
+  "description": "An application for uploading PDF documents, extracting key data points using AI, and exporting the results to an Excel spreadsheet for institutional record-keeping.",
+  "requestFramePermissions": []
+}
