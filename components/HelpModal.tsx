@@ -42,46 +42,78 @@ const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
         </header>
 
         <main className="overflow-auto p-6 space-y-6">
-            <p className="text-center text-gray-700">¡Es muy fácil! Sigue estos sencillos pasos para convertir tus documentos en datos útiles.</p>
+            <p className="text-center text-gray-700 mb-6">Transforma tus documentos en datos útiles en 4 sencillos pasos:</p>
             
             <div className={stepStyle}>
-                <span className={emojiStyle}>📄</span>
+                <span className={emojiStyle}>📥</span>
                 <div className={textContainerStyle}>
-                    <h3 className={titleStyle}>Paso 1: Sube tus archivos PDF</h3>
-                    <p className={descriptionStyle}>
-                        Haz clic en el gran recuadro punteado o simplemente arrastra y suelta todos los documentos PDF que quieras procesar. ¡Puedes subir muchos a la vez!
+                    <h3 className={titleStyle}>1. Carga de Archivos</h3>
+                    <p className="text-gray-700 mb-2">
+                        <strong>Qué necesitas:</strong>
                     </p>
+                    <ul className="list-disc pl-5 mb-2 space-y-1 text-gray-600">
+                        <li>Archivos PDF de órdenes de trabajo, pedidos, instalaciones o desinstalaciones</li>
+                        <li>Tamaño máximo: 10MB por archivo</li>
+                        <li>Recomendado: 10-20 archivos por lote</li>
+                    </ul>
                 </div>
             </div>
 
             <div className={stepStyle}>
-                <span className={emojiStyle}>🔗</span>
+                <span className={emojiStyle}>⚡</span>
                 <div className={textContainerStyle}>
-                    <h3 className={titleStyle}>Paso 2: Enlaza tus archivos (¡si quieres!)</h3>
-                    <p className={descriptionStyle}>
-                        Si guardas tus PDFs en OneDrive o SharePoint, pega aquí el enlace a la carpeta. Así, podrás abrir el archivo original con un solo clic desde la tabla de resultados o el Excel. ¡Es opcional!
+                    <h3 className={titleStyle}>2. Procesamiento Inteligente</h3>
+                    <p className="text-gray-700 mb-2">
+                        <strong>Lo que hace la IA:</strong>
                     </p>
+                    <ul className="list-disc pl-5 mb-2 space-y-1 text-gray-600">
+                        <li>Identifica el tipo de documento automáticamente</li>
+                        <li>Extrae números de orden, fechas, series y más</li>
+                        <li>Procesa aproximadamente 2-5 segundos por página</li>
+                    </ul>
                 </div>
             </div>
 
             <div className={stepStyle}>
-                <span className={emojiStyle}>⚙️</span>
+                <span className={emojiStyle}>✅</span>
                 <div className={textContainerStyle}>
-                    <h3 className={titleStyle}>Paso 3: ¡A procesar!</h3>
-                    <p className={descriptionStyle}>
-                        Presiona el botón "Procesar Documentos". Nuestra inteligencia artificial leerá cada documento, entenderá si es una orden de trabajo o un pedido, y sacará la información más importante.
+                    <h3 className={titleStyle}>3. Revisión y Edición</h3>
+                    <p className="text-gray-600 mb-2">
+                        Verifica que todo esté correcto antes de exportar:
                     </p>
+                    <ul className="list-disc pl-5 mb-2 space-y-1 text-gray-600">
+                        <li>Revisa números de orden y fechas</li>
+                        <li>Edita cualquier campo con un clic</li>
+                        <li>Vista previa del PDF original</li>
+                    </ul>
                 </div>
             </div>
             
             <div className={stepStyle}>
-                <span className={emojiStyle}>📊</span>
+                <span className={emojiStyle}>📤</span>
                 <div className={textContainerStyle}>
-                    <h3 className={titleStyle}>Paso 4: Revisa y descarga</h3>
-                    <p className={descriptionStyle}>
-                        Verás toda la información organizada en tablas. Puedes corregir cualquier dato, exportar todo a un archivo de Excel, o descargar tus PDFs renombrados en un archivo ZIP.
-                    </p>
+                    <h3 className={titleStyle}>4. Exporta tus Resultados</h3>
+                    <div className="space-y-2 text-gray-600">
+                        <p className="font-medium">Elige cómo quieres guardar tus datos:</p>
+                        <div className="bg-gray-50 p-3 rounded-md">
+                            <p className="font-medium">📊 Excel Completo</p>
+                            <p className="text-sm text-gray-500">Todos los datos organizados y listos para análisis</p>
+                        </div>
+                        <div className="bg-gray-50 p-3 rounded-md">
+                            <p className="font-medium">📂 Archivos Renombrados</p>
+                            <p className="text-sm text-gray-500">Descarga un ZIP con tus PDFs organizados</p>
+                        </div>
+                    </div>
                 </div>
+            </div>
+
+            <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                <h4 className="font-bold text-udlap-green mb-2">💡 Consejos para mejores resultados:</h4>
+                <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                    <li>Asegúrate de que los PDFs sean legibles</li>
+                    <li>Para muchos archivos, procesa en lotes pequeños</li>
+                    <li>Usa nombres descriptivos para los archivos</li>
+                </ul>
             </div>
 
         </main>
