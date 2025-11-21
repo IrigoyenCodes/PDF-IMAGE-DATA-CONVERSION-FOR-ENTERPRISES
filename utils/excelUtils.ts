@@ -40,7 +40,7 @@ interface ExportData {
     supplyRequests: SupplyRequestDocument[];
     uninstallations: UninstallationDocument[];
     installations: InstallationDocument[];
-    oneDriveUrls: { 
+    oneDriveUrls?: { 
         workOrder: string; 
         supplyRequest: string;
         uninstallation: string;

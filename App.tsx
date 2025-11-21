@@ -61,7 +61,6 @@ const App: React.FC = () => {
     const [retryingIndex, setRetryingIndex] = useState<number | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [previewModalState, setPreviewModalState] = useState<{ isOpen: boolean; documentType: DocumentType | null }>({ isOpen: false, documentType: null });
-    const [oneDriveUrls, setOneDriveUrls] = useState<{ workOrder: string; supplyRequest: string; uninstallation: string; installation: string; }>({ workOrder: '', supplyRequest: '', uninstallation: '', installation: '' });
     const [isHelpModalOpen, setIsHelpModalOpen] = useState<boolean>(false);
     const [isDashboardOpen, setIsDashboardOpen] = useState<boolean>(true);
     const [isDragging, setIsDragging] = useState<boolean>(false);
@@ -359,7 +358,7 @@ const App: React.FC = () => {
         }
         
         if (Object.values(dataToExport).some(arr => arr.length > 0)) {
-            exportToExcel({ ...dataToExport, oneDriveUrls });
+            exportToExcel({ ...dataToExport });
         }
     };
     
@@ -460,16 +459,7 @@ const App: React.FC = () => {
             const isFailed = rowData.orden === 'Fallo de Procesamiento';
             const isRetrying = retryingIndex === globalIndex;
 
-            const baseUrl = oneDriveUrls[rowData.type];
-            const fileLink = baseUrl && baseUrl.trim() ? `${baseUrl.trim().endsWith('/') ? baseUrl.trim() : baseUrl.trim() + '/'}${rowData.archivo}` : null;
-            
-            const fileCellContent = fileLink ? (
-                <a href={fileLink} target="_blank" rel="noopener noreferrer" className="text-udlap-orange hover:text-orange-700 hover:underline">
-                    {rowData.archivo}
-                </a>
-            ) : (
-                rowData.archivo
-            );
+            const fileCellContent = rowData.archivo;
 
             const rowClasses = isFailed ? 'bg-red-50 hover:bg-red-100' : 'hover:bg-gray-50';
 
@@ -649,56 +639,6 @@ const App: React.FC = () => {
                         )}
                     </section>
                     
-                    <section>
-                        <h2 className="text-lg font-semibold text-udlap-green text-center mb-4">2. Enlaza a Carpetas de OneDrive (Opcional)</h2>
-                        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label htmlFor="onedrive-url-wo" className="block text-sm font-medium text-udlap-green">URL para Órdenes de Trabajo</label>
-                                <input
-                                    type="text"
-                                    id="onedrive-url-wo"
-                                    value={oneDriveUrls.workOrder}
-                                    onChange={(e) => setOneDriveUrls(prev => ({ ...prev, workOrder: e.target.value }))}
-                                    placeholder="https://.../Documentos/OrdenesDeTrabajo"
-                                    className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-udlap-orange focus:border-udlap-orange sm:text-sm"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="onedrive-url-sr" className="block text-sm font-medium text-udlap-green">URL para Pedidos de Suministros</label>
-                                <input
-                                    type="text"
-                                    id="onedrive-url-sr"
-                                    value={oneDriveUrls.supplyRequest}
-                                    onChange={(e) => setOneDriveUrls(prev => ({ ...prev, supplyRequest: e.target.value }))}
-                                    placeholder="https://.../Documentos/PedidosDeSuministros"
-                                    className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-udlap-orange focus:border-udlap-orange sm:text-sm"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="onedrive-url-un" className="block text-sm font-medium text-udlap-green">URL para Desinstalaciones</label>
-                                <input
-                                    type="text"
-                                    id="onedrive-url-un"
-                                    value={oneDriveUrls.uninstallation}
-                                    onChange={(e) => setOneDriveUrls(prev => ({ ...prev, uninstallation: e.target.value }))}
-                                    placeholder="https://.../Documentos/Desinstalaciones"
-                                    className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-udlap-orange focus:border-udlap-orange sm:text-sm"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="onedrive-url-in" className="block text-sm font-medium text-udlap-green">URL para Instalaciones</label>
-                                <input
-                                    type="text"
-                                    id="onedrive-url-in"
-                                    value={oneDriveUrls.installation}
-                                    onChange={(e) => setOneDriveUrls(prev => ({ ...prev, installation: e.target.value }))}
-                                    placeholder="https://.../Documentos/Instalaciones"
-                                    className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-udlap-orange focus:border-udlap-orange sm:text-sm"
-                                />
-                            </div>
-                        </div>
-                    </section>
-
                     {error && <div className="text-red-600 bg-red-100 p-3 rounded-md my-4">{error}</div>}
 
                     <section id="controls" className="flex flex-col items-center">
@@ -932,7 +872,6 @@ const App: React.FC = () => {
                     onClose={() => setPreviewModalState({ isOpen: false, documentType: null })} 
                     data={dataForModal} 
                     documentType={previewModalState.documentType!}
-                    oneDriveUrls={oneDriveUrls}
                     onUpdateData={handleDataUpdate}
                 />
 
